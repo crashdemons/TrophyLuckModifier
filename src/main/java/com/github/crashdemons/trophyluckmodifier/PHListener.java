@@ -22,7 +22,7 @@ public class PHListener implements Listener{
     @EventHandler
     public void onRoll(HeadRollEvent event){
         if(!plugin.hasPlayerheads()) return;
-        System.out.println("PH roll");
+        //System.out.println("PH roll");
         
         //handle the roll with an adapter class since we can't make these two events implement a common interface without reflection/proxy
         RollEventAdapter adaptedRoll = new RollEventAdapter(event);

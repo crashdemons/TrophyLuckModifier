@@ -22,7 +22,7 @@ public class MTListener implements Listener{
     @EventHandler
     public void onRoll(TrophyRollEvent event){
         if(!plugin.hasMiningtrophies()) return;
-        System.out.println("MT roll");
+        //System.out.println("MT roll");
         
         //handle the roll with an adapter class since we can't make these two events implement a common interface without reflection/proxy
         RollEventAdapter adaptedRoll = new RollEventAdapter(event);

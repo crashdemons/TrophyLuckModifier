@@ -108,22 +108,22 @@ public class TrophyLuckModifier extends JavaPlugin implements Listener {
             for(PotionEffect effect : lentity.getActivePotionEffects()){
                 if(effect.getType().equals(PotionEffectType.LUCK)){
                     luck+=effect.getAmplifier()+1;
-                    getLogger().info(" luck "+luck+" detected.");
+                    //getLogger().info(" luck "+luck+" detected.");
                 }
                 if(effect.getType().equals(PotionEffectType.UNLUCK)){
                     luck-=effect.getAmplifier()+1;
-                    getLogger().info(" bad luck "+(-luck)+" detected.");
+                    //getLogger().info(" bad luck "+(-luck)+" detected.");
                 }
             }
             if(luck==0) return;//don't modify results without any sort of luck effect!
             double luckrate = getRelevantLuckRate(adaptedEvent.getType());
             double newDropRate = adaptedEvent.getEffectiveDropRate()*(1 + luckrate*luck);
             double dropRoll = adaptedEvent.getEffectiveDropRoll();
-            getLogger().info(" luckrate="+luckrate);
-            getLogger().info(" droprate: "+adaptedEvent.getEffectiveDropRate()+ " -> "+newDropRate);
-            getLogger().info(" roll: "+dropRoll);
+            //getLogger().info(" luckrate="+luckrate);
+            //getLogger().info(" droprate: "+adaptedEvent.getEffectiveDropRate()+ " -> "+newDropRate);
+            //getLogger().info(" roll: "+dropRoll);
             adaptedEvent.setSuccess( dropRoll < newDropRate );
-            getLogger().info(" success: "+adaptedEvent.succeeded());
+            //getLogger().info(" success: "+adaptedEvent.succeeded());
         }
     }
 
