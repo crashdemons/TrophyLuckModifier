@@ -1,0 +1,5 @@
+#the rate at which levels of luck increase the droprate.
+#this is calculated with droprate*(1 + luckrate)
+#this calculation occurs AFTER PH/MT's fortune and looting increases.
+head-luck-rate: 0.2
+mining-luck-rate: 0.2

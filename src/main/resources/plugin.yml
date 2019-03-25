@@ -1,0 +1,10 @@
+name: TrophyLuckModifier
+version: ${project.version}
+description: Adds a luck modifier to PlayerHeads or MiningTrophies drops
+author: crashdemons
+website: https://github.com/crashdemons/TrophyLuckModifier
+api-version: 1.13
+depend: [ WorldGuard ]
+softdepend: [ PlayerHeads, MiningTrophies ]
+
+main: com.github.crashdemons.trophyluckmodifier.TrophyLuckModifier
