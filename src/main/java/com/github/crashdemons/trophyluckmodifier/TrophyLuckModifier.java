@@ -70,7 +70,8 @@ public class TrophyLuckModifier extends JavaPlugin implements Listener {
     public void onEnable(){
         getLogger().info("Enabling...");
         if(!pluginInit()) return;
-        this.reloadConfig();
+        saveDefaultConfig();
+        reloadConfig();
         if(PHEnabled){
             getServer().getPluginManager().registerEvents(new PHListener(this), this);
         }
@@ -83,7 +84,7 @@ public class TrophyLuckModifier extends JavaPlugin implements Listener {
     @Override
     public void onDisable(){
         getLogger().info("Disabling...");
-        //...
+        saveConfig();
         getLogger().info("Disabled.");
     }
     
