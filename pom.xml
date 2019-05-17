@@ -60,8 +60,8 @@
         </dependency>
         <dependency>
             <groupId>org.shininet.bukkit</groupId>
-            <artifactId>PlayerHeads</artifactId>
-            <version>4.9.2-SNAPSHOT</version>
+            <artifactId>PlayerHeads-api</artifactId>
+            <version>4.10.0-SNAPSHOT</version>
         </dependency>
   	<dependency>
   		<groupId>junit</groupId>
@@ -98,7 +98,7 @@
         <dependency>
             <groupId>org.bukkit</groupId>
             <artifactId>bukkit</artifactId>
-            <version>1.14-pre5-SNAPSHOT</version>
+            <version>1.14.1-R0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
