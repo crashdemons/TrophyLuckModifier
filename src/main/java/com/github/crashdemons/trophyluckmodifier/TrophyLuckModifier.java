@@ -112,7 +112,8 @@ public class TrophyLuckModifier extends JavaPlugin implements Listener {
             AttributeInstance attrib = lentity.getAttribute(Attribute.GENERIC_LUCK);
             if(attrib!=null){
                 luck = attrib.getValue();
-                //getLogger().info("Luck eff:"+luck+" adef:"+attrib.getDefaultValue()+" abase:"+attrib.getBaseValue()+" aval:"+attrib.getValue());
+                if(getConfig().getBoolean("debug-luck-attribute"))
+                    getLogger().info("Luck adef:"+attrib.getDefaultValue()+" abase:"+attrib.getBaseValue()+" aval:"+attrib.getValue());
             }
             
             if(luck==0) return;//don't modify results without any sort of luck effect!

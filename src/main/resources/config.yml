@@ -3,3 +3,7 @@
 #this calculation occurs AFTER PH/MT's fortune and looting increases.
 head-luck-rate: 0.2
 mining-luck-rate: 0.2
+
+#print luck attribute values debug entry to console when a head roll event occurs. (used for development testing / testing item attributes only).
+debug-luck-attribute: false
+
