@@ -70,7 +70,7 @@ public class TrophyLuckModifier extends JavaPlugin implements Listener {
     
     @Override
     public void onEnable(){
-        getLogger().info("Enabling...");
+        //getLogger().info("Enabling...");
         if(!pluginInit()) return;
         saveDefaultConfig();
         reloadConfig();
@@ -85,8 +85,8 @@ public class TrophyLuckModifier extends JavaPlugin implements Listener {
     
     @Override
     public void onDisable(){
-        getLogger().info("Disabling...");
-        saveConfig();
+        //getLogger().info("Disabling...");
+        //saveConfig();
         getLogger().info("Disabled.");
     }
     
