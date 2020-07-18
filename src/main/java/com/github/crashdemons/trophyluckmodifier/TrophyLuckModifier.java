@@ -120,11 +120,14 @@ public class TrophyLuckModifier extends JavaPlugin implements Listener {
             double luckrate = getRelevantLuckRate(adaptedEvent.getType());
             double newDropRate = adaptedEvent.getEffectiveDropRate()*(1 + luckrate*luck);
             double dropRoll = adaptedEvent.getEffectiveDropRoll();
-            //getLogger().info(" luckrate="+luckrate);
-            //getLogger().info(" droprate: "+adaptedEvent.getEffectiveDropRate()+ " -> "+newDropRate);
-            //getLogger().info(" roll: "+dropRoll);
+            
             adaptedEvent.setSuccess( dropRoll < newDropRate );
-            //getLogger().info(" success: "+adaptedEvent.succeeded());
+            if(getConfig().getBoolean("debug-luck-increase")){
+                getLogger().info(" luckrate="+luckrate);
+                getLogger().info("   droprate: "+adaptedEvent.getEffectiveDropRate()+ " -> "+newDropRate);
+                getLogger().info("   roll: "+dropRoll);
+                getLogger().info("   success: "+adaptedEvent.succeeded());
+            }
         }
     }
 
