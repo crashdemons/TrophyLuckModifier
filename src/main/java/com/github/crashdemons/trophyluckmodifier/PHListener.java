@@ -8,6 +8,7 @@ package com.github.crashdemons.trophyluckmodifier;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.shininet.bukkit.playerheads.events.HeadRollEvent;
+import org.shininet.bukkit.playerheads.events.modifiers.DropRateModifier;
 
 /**
  *
@@ -26,7 +27,8 @@ public class PHListener implements Listener{
         
         //handle the roll with an adapter class since we can't make these two events implement a common interface without reflection/proxy
         RollEventAdapter adaptedRoll = new RollEventAdapter(event);
-        plugin.modifyRoll(adaptedRoll);
-        event.setDropSuccess(adaptedRoll.succeeded());
+        DropRateModifier mod = plugin.getModification(adaptedRoll).toPH();
+        event.setCustomModifier(plugin, "luck", mod);
+        event.recalculateSuccess();
     }
 }

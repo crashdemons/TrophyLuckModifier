@@ -5,6 +5,8 @@
  */
 package com.github.crashdemons.trophyluckmodifier;
 
+import com.github.crashdemons.trophyluckmodifier.modifiers.DropRateModifier;
+import com.github.crashdemons.trophyluckmodifier.modifiers.DropRateModifierType;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.entity.Entity;
@@ -81,6 +83,11 @@ public class TrophyLuckModifier extends JavaPlugin implements Listener {
             getServer().getPluginManager().registerEvents(new MTListener(this), this);
         }
         getLogger().info("Enabled.");
+        
+        getLogger().info(" Config head-luck-rate: "+getConfig().getDouble("head-luck-rate"));
+        getLogger().info(" Config mining-luck-rate: "+getConfig().getDouble("mining-luck-rate"));
+        getLogger().info(" Config debug-luck-attribute: "+(getConfig().getBoolean("debug-luck-attribute")?"Y":"N"));
+        getLogger().info(" Config debug-luck-increase: "+(getConfig().getBoolean("debug-luck-increase")?"Y":"N"));
     }
     
     @Override
@@ -100,9 +107,9 @@ public class TrophyLuckModifier extends JavaPlugin implements Listener {
         return 0.0;
     }
     
-    public void modifyRoll(RollEventAdapter adaptedEvent){
-        if(adaptedEvent.getAlwaysRewarded()) return;//don't modify rolls that always-reward already.
-        if(adaptedEvent.getEffectiveDropRate()==0.0) return;//don't modify 0-rate rolls.
+    public DropRateModifier getModification(RollEventAdapter adaptedEvent){
+        if(adaptedEvent.getAlwaysRewarded()) return DropRateModifier.None;//don't modify rolls that always-reward already.
+        if(adaptedEvent.getEffectiveDropRate()==0.0) return DropRateModifier.None;//don't modify 0-rate rolls.
         
         Entity entity = adaptedEvent.getEntity();
         double luck = 0;
@@ -116,8 +123,11 @@ public class TrophyLuckModifier extends JavaPlugin implements Listener {
                     getLogger().info("Luck adef:"+attrib.getDefaultValue()+" abase:"+attrib.getBaseValue()+" aval:"+attrib.getValue());
             }
             
-            if(luck==0) return;//don't modify results without any sort of luck effect!
+            if(luck==0) return DropRateModifier.None;//don't modify results without any sort of luck effect!
             double luckrate = getRelevantLuckRate(adaptedEvent.getType());
+            
+            DropRateModifier mod = new DropRateModifier(DropRateModifierType.ADD_MULTIPLE_PER_LEVEL,luckrate,(int)luck);
+            
             double newDropRate = adaptedEvent.getEffectiveDropRate()*(1 + luckrate*luck);
             double dropRoll = adaptedEvent.getEffectiveDropRoll();
             
@@ -128,7 +138,11 @@ public class TrophyLuckModifier extends JavaPlugin implements Listener {
                 getLogger().info("   roll: "+dropRoll);
                 getLogger().info("   success: "+adaptedEvent.succeeded());
             }
+            
+            return mod;
         }
+        return DropRateModifier.None;
     }
+
 
 }

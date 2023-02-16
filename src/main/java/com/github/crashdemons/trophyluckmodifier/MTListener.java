@@ -6,6 +6,7 @@
 package com.github.crashdemons.trophyluckmodifier;
 
 import com.github.crashdemons.miningtrophies.events.TrophyRollEvent;
+import com.github.crashdemons.miningtrophies.modifiers.DropRateModifier;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
@@ -25,10 +26,12 @@ public class MTListener implements Listener{
         //System.out.println("MT roll");
         
         //handle the roll with an adapter class since we can't make these two events implement a common interface without reflection/proxy
+        
+        //handle the roll with an adapter class since we can't make these two events implement a common interface without reflection/proxy
         RollEventAdapter adaptedRoll = new RollEventAdapter(event);
-        plugin.modifyRoll(adaptedRoll);
-        event.setDropSuccess(adaptedRoll.succeeded());
-
+        DropRateModifier mod = plugin.getModification(adaptedRoll).toMT();
+        event.setCustomModifier(plugin, "luck", mod);
+        event.recalculateSuccess();
     }
     
 }
