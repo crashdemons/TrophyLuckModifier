@@ -116,7 +116,7 @@ public class TrophyLuckModifier extends JavaPlugin implements Listener {
         if(entity instanceof LivingEntity){
             LivingEntity lentity = (LivingEntity) entity;
             
-            AttributeInstance attrib = lentity.getAttribute(Attribute.GENERIC_LUCK);
+            AttributeInstance attrib = lentity.getAttribute(Attribute.LUCK);
             if(attrib!=null){
                 luck = attrib.getValue();
                 if(getConfig().getBoolean("debug-luck-attribute"))
